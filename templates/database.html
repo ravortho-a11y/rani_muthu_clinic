@@ -1,1 +1,15 @@
-o
+{% extends 'base.html' %}
+{% block title %}Database | Rani Muthu Clinic{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><span class="eyebrow">DOCTOR DATABASE</span><h1>Clinic Data Center</h1><p>Secure view of patients, appointments, payments and bills.</p></div></section>
+<section class="dashboard"><div class="container">
+  <div class="data-toolbar">
+    <form class="search-form" method="get"><input name="q" value="{{ q }}" placeholder="Search patient, email, phone or service"><button class="btn primary">Search</button></form>
+    <div class="export-links"><a class="btn light" href="{{ url_for('export_database', kind='patients') }}">Export Patients</a><a class="btn light" href="{{ url_for('export_database', kind='appointments') }}">Export Appointments</a><a class="btn light" href="{{ url_for('export_database', kind='payments') }}">Export Payments</a></div>
+  </div>
+  <div class="stats"><div><small>Patients</small><strong>{{ patients|length }}</strong></div><div><small>Appointments</small><strong>{{ appointments|length }}</strong></div><div><small>Payments</small><strong>{{ payments|length }}</strong></div><div><small>Total Paid</small><strong>₹{{ payments|sum(attribute='amount') }}</strong></div></div>
+  <div class="table-card"><div class="table-title"><h2>Patients</h2><span>Registered patient records</span></div><div class="table-scroll"><table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Parent/Guardian</th><th>Created</th></tr></thead><tbody>{% for p in patients %}<tr><td>{{p.id}}</td><td>{{p.name}}</td><td>{{p.email}}</td><td>{{p.phone}}</td><td>{{p.parent_phone or '—'}}</td><td>{{p.created_at}}</td></tr>{% else %}<tr><td colspan="6" class="empty">No patient records.</td></tr>{% endfor %}</tbody></table></div></div>
+  <div class="table-card"><div class="table-title"><h2>Appointments</h2><span>Appointment history</span></div><div class="table-scroll"><table><thead><tr><th>Patient</th><th>Service</th><th>Date</th><th>Time</th><th>Status</th><th>Payment</th><th>Reason</th></tr></thead><tbody>{% for a in appointments %}<tr><td>{{a.patient_name}}</td><td>{{a.service_name}}</td><td>{{a.appointment_date}}</td><td>{{a.appointment_time}}</td><td><span class="badge {{a.status|lower}}">{{a.status}}</span></td><td>{{a.payment_status}}</td><td>{{a.reason or '—'}}</td></tr>{% else %}<tr><td colspan="7" class="empty">No appointments.</td></tr>{% endfor %}</tbody></table></div></div>
+  <div class="table-card"><div class="table-title"><h2>Payments & Bills</h2><span>Financial records</span></div><div class="table-scroll"><table><thead><tr><th>Patient</th><th>Bill</th><th>Amount</th><th>Method</th><th>Transaction ID</th><th>Paid At</th></tr></thead><tbody>{% for p in payments %}<tr><td>{{p.patient_name}}</td><td>{{p.bill_number}}</td><td>₹{{p.amount}}</td><td>{{p.method}}</td><td>{{p.transaction_id}}</td><td>{{p.paid_at}}</td></tr>{% else %}<tr><td colspan="6" class="empty">No payments.</td></tr>{% endfor %}</tbody></table></div></div>
+</div></section>
+{% endblock %}
