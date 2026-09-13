@@ -1,1 +1,43 @@
-i
+{% extends 'base.html' %}
+{% block title %}Bill {{ bill.bill_number }} | {{ clinic.name }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container bill-wrap">
+    <div class="bill-card" id="bill-card">
+      <div class="bill-head">
+        <div>
+          <span class="eyebrow">PAYMENT RECEIPT</span>
+          <h1>{{ clinic.name }}</h1>
+          <p>{{ clinic.address }}</p>
+          <p>{{ clinic.phone }} · {{ clinic.email }}</p>
+        </div>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Clinic logo">
+      </div>
+      <div class="paid-stamp">PAID</div>
+      <div class="bill-meta">
+        <div><span>Bill Number</span><b>{{ bill.bill_number }}</b></div>
+        <div><span>Payment Date</span><b>{{ bill.paid_at }}</b></div>
+      </div>
+      <div class="bill-patient">
+        <h3>Patient Details</h3>
+        <p><b>{{ bill.patient_name }}</b></p>
+        <p>{{ bill.patient_phone }} · {{ bill.patient_email }}</p>
+      </div>
+      <div class="bill-table">
+        <div><span>Doctor</span><b>{{ bill.doctor_name }}</b></div>
+        <div><span>Service</span><b>{{ bill.service_name }}</b></div>
+        <div><span>Appointment</span><b>{{ bill.appointment_date }} at {{ bill.appointment_time }}</b></div>
+        <div><span>Payment Method</span><b>{{ bill.method }}</b></div>
+        <div><span>Transaction ID</span><b>{{ bill.transaction_id }}</b></div>
+        <div class="bill-total"><span>Total Paid</span><strong>₹{{ bill.amount }}</strong></div>
+      </div>
+      <p class="bill-note">This receipt confirms that the payment reference was recorded in the clinic database. Use <b>Send Bill to Parent WhatsApp</b> to share the bill details from the patient mobile.</p>
+    </div>
+    <div class="bill-actions no-print">
+      <button class="btn primary" onclick="window.print()">Print / Save as PDF</button>
+      <a class="btn whatsapp" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Send Bill to Parent WhatsApp</a>
+      <a class="btn light" href="{{ url_for('patient_dashboard') }}">Back to Patient Dashboard</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
