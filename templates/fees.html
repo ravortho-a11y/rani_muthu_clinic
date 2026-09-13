@@ -1,1 +1,6 @@
-i
+{% extends 'base.html' %}
+{% block title %}Clinic Fees | Ranimuthu Clinic{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><span class="eyebrow">CLINIC FEES</span><h1>Simple and transparent pricing.</h1><p>Fees below are based on the clinic information provided for this website.</p></div></section>
+<section class="section"><div class="container"><div class="fee-table">{% for row in fee_rows %}<div class="fee-row"><div><h3>{{ row.name }}</h3><p>{{ row.description }}</p></div><strong>₹{{ row.fee }}</strong></div>{% endfor %}</div><div class="notice"><b>Payment:</b> Patients can pay using Google Pay / UPI and then enter the transaction reference. A digital bill is automatically stored in the clinic database.</div></div></section>
+{% endblock %}
