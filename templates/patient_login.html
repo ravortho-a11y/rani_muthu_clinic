@@ -1,1 +1,24 @@
-p
+{% extends 'base.html' %}
+{% block title %}Patient / Parent Login | Rani Muthu Clinic{% endblock %}
+{% block content %}
+<section class="auth-section">
+  <div class="auth-image">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Rani Muthu Clinic">
+    <h2>Your Health.<br>Your Priority.</h2>
+    <p>Secure access to appointments, payments and bills.</p>
+  </div>
+  <div class="form-card auth-card">
+    <span class="eyebrow">PARENT / PATIENT PORTAL</span>
+    <h1>Patient Login</h1>
+    <p class="muted">Parents and patients can securely access appointments, payments and bills.</p>
+    <form method="post">
+      <label>Email Address</label>
+      <input type="email" name="email" required autocomplete="email">
+      <label>Password</label>
+      <input type="password" name="password" required autocomplete="current-password">
+      <button class="btn primary full">Login</button>
+    </form>
+    <p class="center">New patient? <a class="text-link" href="{{ url_for('patient_register') }}">Register here</a></p>
+  </div>
+</section>
+{% endblock %}
