@@ -1,0 +1,36 @@
+RANI MUTHU CLINIC - FULL WEBSITE
+
+1. Open this folder in VS Code.
+2. Open Terminal in the clinic_website folder.
+3. Run:
+   pip install -r requirements.txt
+4. Run:
+   python app.py
+5. Open:
+   http://127.0.0.1:5000
+
+PAYMENT QR
+The supplied QR is included at:
+static/images/gpay_qr.png
+It decodes to: 7867873401@axl (display name in the supplied QR: Malathi R).
+Verify that this is the clinic's intended UPI account before using the site for real payments.
+
+PARENT BILL
+Patient registration has an optional Parent / Guardian Mobile Number.
+After payment, the Bill page has a "Send Bill to Parent WhatsApp" button.
+For the bill link to open on the parent's phone, the website must be deployed online (not only 127.0.0.1).
+
+PAYMENT NOTE
+The site records the UPI transaction/reference ID entered by the patient. It does not automatically verify the payment with the bank/UPI provider.
+
+Parent Login QR has been removed. The patient dashboard now shows the next future appointment and arrival time-gap guidance.
+
+
+DEPLOYMENT NOTE
+For cPanel Python/Passenger hosting, set the application startup file to passenger_wsgi.py and entry point to application if those fields are available. Alternatively use app.py with entry point app.
+
+FIXES INCLUDED
+- Fixed patient registration email variable bug.
+- Fixed doctor login undefined identifier bug.
+- Disabled Flask debug mode for production.
+- Added passenger_wsgi.py for cPanel/Passenger deployment.
