@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Ranimuthu Clinic — patient-first healthcare, appointments and transparent clinic fees.">
+  <title>{% block title %}{{ clinic.name }}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav-wrap">
+    <a class="brand" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Ranimuthu Clinic logo">
+      <span><strong>RANIMUTHU CLINIC</strong><small>{{ clinic.short_doctor }} • {{ clinic.qualifications }}</small></span>
+    </a>
+    <button class="menu-btn" type="button" aria-label="Open menu" data-menu>☰</button>
+    <nav class="nav-links" data-nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('fees') }}">Fees</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+      {% if session.get('patient_id') %}
+        <a class="nav-pill" href="{{ url_for('patient_dashboard') }}">Patient Dashboard</a>
+        <a class="nav-dark" href="{{ url_for('logout') }}">Logout</a>
+      {% elif session.get('doctor_id') %}
+        <a class="nav-pill" href="{{ url_for('doctor_dashboard') }}">Doctor Dashboard</a>
+        <a class="nav-pill" href="{{ url_for('doctor_database') }}">Database</a>
+        <a class="nav-dark" href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a class="nav-pill" href="{{ url_for('patient_login') }}">Patient Login</a>
+        <a class="nav-dark" href="{{ url_for('doctor_login') }}">Doctor Login</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="container alerts">
+    {% for category,message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}
+  </div>
+  {% endif %}
+{% endwith %}
+
+<main>{% block content %}{% endblock %}</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo"><h3>Ranimuthu Clinic</h3><p>Quality care. Better health.</p></div>
+    <div><h4>Quick Links</h4><a href="{{ url_for('about') }}">About</a><a href="{{ url_for('fees') }}">Fees</a><a href="{{ url_for('contact') }}">Contact</a></div>
+    <div><h4>Contact</h4><p>{{ clinic.phone }}</p><p>{{ clinic.email }}</p><p>{{ clinic.hours }}</p></div>
+  </div>
+  <div class="container footer-bottom">© 2026 Ranimuthu Clinic. For clinical emergencies, use local emergency services.</div>
+</footer>
+</body>
+</html>

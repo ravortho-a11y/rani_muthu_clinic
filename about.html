@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}About | Rani Muthu Clinic{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">ABOUT THE CLINIC</span>
+    <h1>Professional healthcare with a patient-first approach.</h1>
+    <p>Learn about Dr. Ravikumar Muthukaluvan and the services offered through Rani Muthu Clinic.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container doctor-profile">
+    <div class="profile-logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Rani Muthu Clinic logo">
+    </div>
+    <div>
+      <span class="eyebrow">DOCTOR PROFILE</span>
+      <h2>Dr. Ravikumar Muthukaluvan</h2>
+      <p class="lead"><strong>MBBS, D-Ortho, MRCS (Edinburgh), MRCGP (London)</strong></p>
+      <p>UK-registered General Practitioner (GP) Partner practicing at Eastbrook Surgery / Rush Green Medical Centre in Romford, London. He has over 27 years of clinical experience and completed his MBBS from The Tamil Nadu Dr. M.G.R. Medical University.</p>
+      <p><strong>D-Ortho studied at MGR University, MRCS (Edinburgh), MRCGP (London).</strong></p>
+      <p><strong>Special interest in Sports Medicine and Orthopaedics, General Medicine, Skin and Paediatrics.</strong></p>
+      <div class="profile-points">
+        <span>27+ years clinical experience</span>
+        <span>UK-registered General Practitioner</span>
+        <span>{{ clinic.bma_membership }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container two-col">
+    <div class="card">
+      <h2>Education &amp; Professional Qualifications</h2>
+      <p><strong>MBBS</strong> — The Tamil Nadu Dr. M.G.R. Medical University.</p>
+      <p><strong>D-Ortho</strong> — studied at MGR University.</p>
+      <p><strong>MRCS (Edinburgh)</strong></p>
+      <p><strong>MRCGP (London)</strong></p>
+    </div>
+    <div class="card">
+      <h2>Special Interests</h2>
+      <p>Special interest in:</p>
+      <ul>
+        <li>Sports Medicine and Orthopaedics</li>
+        <li>General Medicine</li>
+        <li>Skin Conditions</li>
+        <li>Paediatrics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container card">
+    <h2>Professional Background</h2>
+    <p>Dr. Ravikumar Muthukaluvan is a UK-registered General Practitioner (GP) Partner practicing at Eastbrook Surgery / Rush Green Medical Centre in Romford, London.</p>
+    <p>His professional profile combines general practice with special interests in sports medicine and orthopaedics, general medicine, skin conditions and paediatrics.</p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Contact | Ranimuthu Clinic{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><span class="eyebrow">GET IN TOUCH</span><h1>We are here to help.</h1><p>Contact the clinic for appointment and service information.</p></div></section>
+<section class="section"><div class="container contact-grid">
+  <div class="card contact-card">
+    <h2>Contact Details</h2>
+    <div class="contact-item"><b>☎</b><span><strong>Phone</strong>{{ clinic.phone }}</span></div>
+    <div class="contact-item"><b>✉</b><span><strong>Email</strong>{{ clinic.email }}</span></div>
+    <div class="contact-item"><b>⌖</b><span><strong>Address</strong>{{ clinic.address }}</span></div>
+    <div class="contact-item"><b>◷</b><span><strong>Opening Hours</strong>{{ clinic.hours }}</span></div>
+  </div>
+  <div class="card map-card">
+    <h2>Find Us</h2>
+    <div class="location-box">
+      <img class="location-qr" src="{{ url_for('static', filename='images/location_qr.png') }}" alt="Ranimuthu Clinic location QR code">
+      <h3>Scan for Clinic Location</h3>
+      <p class="muted">Scan the QR code with your phone to open Google Maps and get directions.</p>
+      <a class="btn primary" href="https://www.google.com/maps/search/?api=1&query=M7P2%2BP2G%2C%20Dindigul%20-%20Theni%20-%20Kottarakkara%20Hwy%2C%20Gudalur%2C%20Tamil%20Nadu%20625518" target="_blank" rel="noopener">Open Google Maps →</a>
+    </div>
+  </div>
+</div>  <div class="contact-payment-card">
+    <div><span class="eyebrow">DIGITAL PAYMENT</span><h2>Pay with Google Pay</h2><p>Scan the official clinic UPI QR using Google Pay or another UPI app.</p><b>UPI ID: {{ gpay_upi_id }}</b></div>
+    <img src="{{ url_for('static', filename='images/gpay_qr.png') }}" alt="Google Pay UPI QR code">
+  </div>
+</section>
+{% endblock %}

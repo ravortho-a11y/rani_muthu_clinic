@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Rani Muthu Clinic | Quality Care. Better Health.{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">WELCOME TO</span>
+      <h1>Rani Muthu Clinic</h1>
+      <h2>Quality Care. Better Health.</h2>
+      <p>Professional, patient-centred healthcare with convenient online appointment booking, transparent fees and secure patient access.</p>
+      <div class="hero-actions"><a class="btn primary" href="{{ url_for('patient_login') }}">Book Appointment →</a><a class="btn light" href="{{ url_for('about') }}">Learn More</a></div>
+      <div class="hero-trust"><span>✓ Patient-first care</span><span>✓ Easy booking</span><span>✓ Mobile friendly</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="logo-ring"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Rani Muthu Clinic"></div>
+      <span class="doctor-tag">UK-registered GP</span>
+      <h3>{{ clinic.doctor }}</h3>
+      <p class="doctor-qualifications">{{ clinic.qualifications }} <span class="bma-badge">{{ clinic.bma_membership }}</span></p>
+      <strong>{{ clinic.experience }}</strong>
+      <a href="{{ url_for('about') }}">View Doctor Profile →</a>
+    </div>
+  </div>
+</section>
+
+<section class="feature-strip"><div class="container feature-grid">
+  <div><b>◉</b><span><strong>Expert Doctor</strong><small>General practice & special interests</small></span></div>
+  <div><b>▣</b><span><strong>Easy Appointments</strong><small>Book online in minutes</small></span></div>
+  <div><b>₹</b><span><strong>Transparent Fees</strong><small>Clear service pricing</small></span></div>
+  <div><b>24</b><span><strong>Patient Support</strong><small>Contact details always available</small></span></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="section-head"><span class="eyebrow">SERVICES</span><h2>Healthcare for your everyday needs</h2><p>Simple services with clear pricing. Clinical suitability is assessed by the doctor.</p></div>
+  <div class="service-grid">{% for name,fee,desc in services %}<article class="service-card"><div class="service-icon">✚</div><h3>{{ name }}</h3><p>{{ desc }}</p><strong>₹{{ fee }}</strong></article>{% endfor %}</div>
+</div></section>
+
+
+{% endblock %}
