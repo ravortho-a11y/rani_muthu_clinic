@@ -1,1 +1,5 @@
-o
+{% extends 'base.html' %}
+{% block title %}Doctor Login | Rani Muthu Clinic{% endblock %}
+{% block content %}
+<section class="auth-section"><div class="auth-image doctor-login"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="Rani Muthu Clinic"><h2>Doctor Portal</h2><p>Secure access for appointment and database management.</p></div><div class="form-card auth-card"><span class="eyebrow">DOCTOR PORTAL</span><h1>Doctor Login</h1><p class="muted">Sign in using your Doctor ID or registered email.</p><form method="post"><label>Doctor ID or Email</label><input type="text" name="identifier" placeholder="Doctor ID or email" required autocomplete="username"><label>Password</label><input type="password" name="password" required autocomplete="current-password"><button class="btn primary full">Doctor Login</button></form><p class="login-note">Doctor ID: <strong>ravortho</strong></p></div></section>
+{% endblock %}
