@@ -1,1 +1,46 @@
-i
+{% extends 'base.html' %}
+{% block title %}Payment | {{ clinic.name }}{% endblock %}
+{% block content %}
+<section class="form-section">
+  <div class="container payment-layout">
+    <div class="form-card">
+      <span class="eyebrow">SECURE PAYMENT</span>
+      <h1>Pay appointment fee</h1>
+      <div class="summary">
+        <p><span>Doctor</span><b>{{ appointment.doctor_name }}</b></p>
+        <p><span>Service</span><b>{{ appointment.service_name }}</b></p>
+        <p><span>Date</span><b>{{ appointment.appointment_date }}</b></p>
+        <p><span>Time</span><b>{{ appointment.appointment_time }}</b></p>
+        <p class="total"><span>Amount</span><b>₹{{ appointment.fee }}</b></p>
+      </div>
+
+      <div class="gpay-card payment-qr-card">
+        <div class="gpay-icon">G</div>
+        <div class="payment-qr-content">
+          <h3>Google Pay / UPI</h3>
+          <p>Scan the clinic QR using Google Pay or any UPI app.</p>
+          <img class="payment-qr" src="{{ url_for('static', filename='images/gpay_qr.png') }}" alt="Rani Muthu Clinic UPI payment QR code">
+          <small class="payment-note">UPI ID: {{ gpay_upi_id }}</small>
+          {% if gpay_link %}<a class="btn primary" href="{{ gpay_link }}">Open GPay / UPI</a>{% endif %}
+        </div>
+      </div>
+
+      <div class="payment-instructions">
+        <b>After payment</b>
+        <ol>
+          <li>Complete the payment in Google Pay or another UPI app.</li>
+          <li>Copy the UPI transaction/reference ID.</li>
+          <li>Enter it below and submit.</li>
+          <li>Your digital bill/receipt will be created and stored in the database.</li>
+        </ol>
+      </div>
+
+      <form method="post">
+        <label>UPI Transaction / Reference ID</label>
+        <input name="transaction_id" required placeholder="e.g. 123456789012">
+        <button class="btn primary full" type="submit">Save Payment & Get Bill</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
